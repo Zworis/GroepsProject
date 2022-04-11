@@ -1,5 +1,0 @@
-sceneSetups:
-- path: Assets/Coderclass Groepsproject Veilige samenleving.unity
-  isLoaded: 1
-  isActive: 1
-  isSubScene: 0
