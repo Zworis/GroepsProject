@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Camera_Movement : MonoBehaviour
 {
@@ -9,6 +10,7 @@ public class Camera_Movement : MonoBehaviour
     public float Speed;
     public int HousePlacement;
     public string Mode = "huis";
+    public Slider Slider;
     // Start is called before the first frame update
     void Start()
     {
@@ -22,20 +24,6 @@ public class Camera_Movement : MonoBehaviour
         Vector3 position = transform.position;
         position.y = 1;
         transform.position = position;
-        if (Input.GetKey(KeyCode.LeftAlt))
-        {
-            if ((turn.y <= -89 && Input.GetAxis("Mouse Y") <= 0) || (turn.y >= 0 && Input.GetAxis("Mouse Y") >= 0))
-            {
-                turn.x += Input.GetAxis("Mouse X") * Sensitivity;
-                transform.rotation = Quaternion.Euler(-turn.y, turn.x, 0);
-            }
-            else
-            {
-                turn.y += Input.GetAxis("Mouse Y") * Sensitivity;
-                turn.x += Input.GetAxis("Mouse X") * Sensitivity;
-                transform.rotation = Quaternion.Euler(-turn.y, turn.x, 0);
-            }
-        }
         if (Input.GetKey(KeyCode.A))
         {
             transform.Translate(-Speed, 0f, 0f);
@@ -69,6 +57,25 @@ public class Camera_Movement : MonoBehaviour
         }
         if(Input.GetKey(KeyCode.Alpha2)){
             Mode = "Weg";
+        }
+    }
+    private void Update()
+    {
+
+        Sensitivity = GameObject.Find("Slider").GetComponent<Slider>().value;
+        if (Input.GetKey(KeyCode.LeftAlt))
+        {
+            if ((turn.y <= -89 && Input.GetAxis("Mouse Y") <= 0) || (turn.y >= 0 && Input.GetAxis("Mouse Y") >= 0))
+            {
+                turn.x += Input.GetAxis("Mouse X") * Sensitivity;
+                transform.rotation = Quaternion.Euler(-turn.y, turn.x, 0);
+            }
+            else
+            {
+                turn.y += Input.GetAxis("Mouse Y") * Sensitivity;
+                turn.x += Input.GetAxis("Mouse X") * Sensitivity;
+                transform.rotation = Quaternion.Euler(-turn.y, turn.x, 0);
+            }
         }
     }
 }
